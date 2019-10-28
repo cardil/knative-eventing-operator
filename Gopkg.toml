@@ -9,6 +9,8 @@ required = [
   "k8s.io/kube-openapi/cmd/openapi-gen",
   "k8s.io/gengo/args",
   "sigs.k8s.io/controller-tools/pkg/crd/generator",
+  "knative.dev/test-infra/scripts",
+  "knative.dev/pkg/codegen/cmd/injection-gen",
 ]
 
 [[override]]
@@ -66,6 +68,22 @@ required = [
   name = "github.com/jcrossley3/manifestival"
   branch = "master"
 
+[[override]]
+  name = "knative.dev/pkg"
+  branch = "master"
+
+[[constraint]]
+  name = "knative.dev/test-infra"
+  branch = "master"
+
+[[constraint]]
+  name = "knative.dev/pkg"
+  source = "github.com/knative/pkg"
+
+[[constraint]]
+  name = "github.com/stretchr/testify"
+  version = "1.4.0"
+
 [prune]
   go-tests = true
   non-go = true
@@ -73,16 +91,18 @@ required = [
 
   [[prune.project]]
     name = "k8s.io/code-generator"
+    unused-packages = false
     non-go = false
 
   [[prune.project]]
     name = "k8s.io/gengo"
     non-go = false
 
-[[constraint]]
-  branch = "master"
-  name = "github.com/knative/pkg"
+  [[prune.project]]
+    name = "knative.dev/test-infra"
+    non-go = false
 
-[[constraint]]
-  name = "github.com/stretchr/testify"
-  version = "1.4.0"
+  [[prune.project]]
+    name = "knative.dev/pkg"
+    unused-packages = false
+    non-go = false

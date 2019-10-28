@@ -1002,7 +1002,7 @@
   revision = "8d9ed539ba3134352c586810e749e58df4e94e4f"
 
 [[projects]]
-  digest = "1:686f216a73461588304ff299a21ea49ad6783184e2dbb7707d2189045efbc0d8"
+  digest = "1:dc1ae99dcab96913d81ae970b1f7a7411a54199b14bfb17a7e86f9a56979c720"
   name = "k8s.io/code-generator"
   packages = [
     "cmd/client-gen",
@@ -1028,7 +1028,7 @@
     "cmd/lister-gen/generators",
     "pkg/util",
   ]
-  pruneopts = "UT"
+  pruneopts = "T"
   revision = "c2090bec4d9b1fb25de3812f868accc2bc9ecbae"
 
 [[projects]]
@@ -1070,6 +1070,27 @@
   ]
   pruneopts = "NUT"
   revision = "0cf8f7e6ed1d2e3d47d02e3b6e559369af24d803"
+
+[[projects]]
+  branch = "master"
+  digest = "1:97d1b736b1433987ca9eaa26375889d804ce382162bbd3f8e4e3de8dd405983d"
+  name = "knative.dev/pkg"
+  packages = [
+    "codegen/cmd/injection-gen",
+    "codegen/cmd/injection-gen/args",
+    "codegen/cmd/injection-gen/generators",
+  ]
+  pruneopts = "T"
+  revision = "ba704ad6646f342d135d89dc7ad2101e9dc7b92b"
+  source = "github.com/knative/pkg"
+
+[[projects]]
+  branch = "master"
+  digest = "1:6413404e161487c3350c8430c25344c77eb022cb2713c36bb62fdd9365b3ebdf"
+  name = "knative.dev/test-infra"
+  packages = ["scripts"]
+  pruneopts = "UT"
+  revision = "027b4ff36fdb3a671f12e4fb1d386a742ee12183"
 
 [[projects]]
   digest = "1:b7ca84cccb4630cbd53eef277cf73ac87d7bbcc9ae3e72b8cf414be381853dcc"
@@ -1164,6 +1185,8 @@
     "k8s.io/gengo/args",
     "k8s.io/kube-openapi/cmd/openapi-gen",
     "k8s.io/kube-openapi/pkg/common",
+    "knative.dev/pkg/codegen/cmd/injection-gen",
+    "knative.dev/test-infra/scripts",
     "sigs.k8s.io/controller-runtime/pkg/client",
     "sigs.k8s.io/controller-runtime/pkg/client/config",
     "sigs.k8s.io/controller-runtime/pkg/controller",
