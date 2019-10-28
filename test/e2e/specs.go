@@ -11,5 +11,5 @@ func Specifications() []test.Specification {
 }
 
 var specifications []test.Specification = []test.Specification{
-	test.NewSpec("TestKnativeEventingInstall", testKnativeEventingInstall),
+	test.NewSpec("TestKnativeEventingDeployment", testKnativeEventingDeployment),
 }
