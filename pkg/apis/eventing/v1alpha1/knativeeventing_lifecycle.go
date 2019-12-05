@@ -19,54 +19,54 @@ func (s *KnativeEventingStatus) SetConditions(c apis.Conditions) {
 	s.Conditions = c
 }
 
-func (is *KnativeEventingStatus) IsReady() bool {
-	return conditions.Manage(is).IsHappy()
+func (s *KnativeEventingStatus) IsReady() bool {
+	return conditions.Manage(s).IsHappy()
 }
 
-func (is *KnativeEventingStatus) IsInstalled() bool {
-	return is.GetCondition(InstallSucceeded).IsTrue()
+func (s *KnativeEventingStatus) IsInstalled() bool {
+	return s.GetCondition(InstallSucceeded).IsTrue()
 }
 
-func (is *KnativeEventingStatus) IsAvailable() bool {
-	return is.GetCondition(DeploymentsAvailable).IsTrue()
+func (s *KnativeEventingStatus) IsAvailable() bool {
+	return s.GetCondition(DeploymentsAvailable).IsTrue()
 }
 
-func (is *KnativeEventingStatus) IsDeploying() bool {
-	return is.IsInstalled() && !is.IsAvailable()
+func (s *KnativeEventingStatus) IsDeploying() bool {
+	return s.IsInstalled() && !s.IsAvailable()
 }
 
-func (is *KnativeEventingStatus) GetCondition(t apis.ConditionType) *apis.Condition {
-	return conditions.Manage(is).GetCondition(t)
+func (s *KnativeEventingStatus) GetCondition(t apis.ConditionType) *apis.Condition {
+	return conditions.Manage(s).GetCondition(t)
 }
 
-func (is *KnativeEventingStatus) InitializeConditions() {
-	conditions.Manage(is).InitializeConditions()
+func (s *KnativeEventingStatus) InitializeConditions() {
+	conditions.Manage(s).InitializeConditions()
 }
 
-func (is *KnativeEventingStatus) MarkInstallFailed(msg string) {
-	conditions.Manage(is).MarkFalse(
+func (s *KnativeEventingStatus) MarkInstallFailed(msg string) {
+	conditions.Manage(s).MarkFalse(
 		InstallSucceeded,
 		"Error",
 		"Install failed with message: %s", msg)
 }
 
-func (is *KnativeEventingStatus) MarkInstallSucceeded() {
-	conditions.Manage(is).MarkTrue(InstallSucceeded)
+func (s *KnativeEventingStatus) MarkInstallSucceeded() {
+	conditions.Manage(s).MarkTrue(InstallSucceeded)
 }
 
-func (is *KnativeEventingStatus) MarkDeploymentsAvailable() {
-	conditions.Manage(is).MarkTrue(DeploymentsAvailable)
+func (s *KnativeEventingStatus) MarkDeploymentsAvailable() {
+	conditions.Manage(s).MarkTrue(DeploymentsAvailable)
 }
 
-func (is *KnativeEventingStatus) MarkDeploymentsNotReady() {
-	conditions.Manage(is).MarkFalse(
+func (s *KnativeEventingStatus) MarkDeploymentsNotReady() {
+	conditions.Manage(s).MarkFalse(
 		DeploymentsAvailable,
 		"NotReady",
 		"Waiting on deployments")
 }
 
-func (is *KnativeEventingStatus) MarkIgnored(msg string) {
-	conditions.Manage(is).MarkFalse(
+func (s *KnativeEventingStatus) MarkIgnored(msg string) {
+	conditions.Manage(s).MarkFalse(
 		InstallSucceeded,
 		"Ignored",
 		"Install not attempted: %s", msg)

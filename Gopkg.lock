@@ -65,6 +65,18 @@
   version = "v1.0.0"
 
 [[projects]]
+  digest = "1:5eee87a41d9ebf26fa0809c46a5f5168791cf35c85a82976d9711135c5e31b36"
+  name = "github.com/cardil/operator-e2e-harness"
+  packages = [
+    "pkg/catalogsource",
+    "pkg/config",
+    "pkg/test",
+  ]
+  pruneopts = "NUT"
+  revision = "0a9d25d0c7f51ab40d9d112b89179742a7443095"
+  version = "v0.1.2"
+
+[[projects]]
   digest = "1:fdb4ed936abeecb46a8c27dcac83f75c05c87a46d9ec7711411eb785c213fa02"
   name = "github.com/census-instrumentation/opencensus-proto"
   packages = [
@@ -77,6 +89,14 @@
   ]
   pruneopts = "NUT"
   revision = "a105b96453fe85139acc07b68de48f2cbdd71249"
+  version = "v0.2.0"
+
+[[projects]]
+  digest = "1:0ef770954bca104ee99b3b6b7f9b240605ac03517d9f98cbc1893daa03f3c038"
+  name = "github.com/coreos/go-semver"
+  packages = ["semver"]
+  pruneopts = "NUT"
+  revision = "8ab6407b697782a06568d4b7f1db25550ec2e4c6"
   version = "v0.2.0"
 
 [[projects]]
@@ -416,6 +436,28 @@
   pruneopts = "NUT"
   revision = "4b7aa43c6742a2c18fdef89dd197aaae7dac7ccd"
   version = "1.0.1"
+
+[[projects]]
+  digest = "1:c01e66557785d9d75328704d11c44c26582980cd78209475cb141b3eedd11e9f"
+  name = "github.com/openzipkin/zipkin-go"
+  packages = ["model"]
+  pruneopts = "NUT"
+  revision = "c29478e51bfb2e9c93e0e9f5e015e5993a490399"
+  version = "v0.2.2"
+
+[[projects]]
+  digest = "1:135d202affcf5ac95a03ec50606e629b7689dbca95cae476a6a67b5df3f1cd1b"
+  name = "github.com/operator-framework/operator-lifecycle-manager"
+  packages = [
+    "pkg/api/apis/operators",
+    "pkg/api/apis/operators/v1alpha1",
+    "pkg/api/client/clientset/versioned",
+    "pkg/api/client/clientset/versioned/scheme",
+    "pkg/api/client/clientset/versioned/typed/operators/v1alpha1",
+  ]
+  pruneopts = "NUT"
+  revision = "2abd0e2b4d93b4100220204d429d68a9990a160b"
+  version = "v3.11.0"
 
 [[projects]]
   digest = "1:e0ef292e4dd3648c455a740f49547686ef9c5c70a5b2e92ee05daa13b83f43e1"
@@ -842,11 +884,12 @@
   revision = "05914d821849570fba9eacfb29466f2d8d3cd229"
 
 [[projects]]
-  digest = "1:8b06dd9f107e7f50eb439698af99f40028a85ae334060f3de0171f70fde86009"
+  digest = "1:e9f7fa79848e63962835ad3df85bb0fc3df46059bc9d8b84a946be894dd49e39"
   name = "k8s.io/apiextensions-apiserver"
   packages = [
     "pkg/apis/apiextensions",
     "pkg/apis/apiextensions/v1beta1",
+    "pkg/client/clientset/clientset/scheme",
   ]
   pruneopts = "NUT"
   revision = "0fe22c71c47604641d9aa352c785b7912c200562"
@@ -1056,6 +1099,24 @@
   revision = "0cf8f7e6ed1d2e3d47d02e3b6e559369af24d803"
 
 [[projects]]
+  branch = "master"
+  digest = "1:1160ab17e73a811008f4ea4d2b39985ad1d96cb73d1440fef378a975fdd5574d"
+  name = "knative.dev/pkg"
+  packages = [
+    "changeset",
+    "logging",
+    "logging/logkey",
+    "test",
+    "test/ingress",
+    "test/logging",
+    "test/monitoring",
+    "test/spoof",
+    "test/zipkin",
+  ]
+  pruneopts = "NUT"
+  revision = "da3d090aa9ee8a59804e9b51164cf1aa492800e9"
+
+[[projects]]
   digest = "1:b7ca84cccb4630cbd53eef277cf73ac87d7bbcc9ae3e72b8cf414be381853dcc"
   name = "sigs.k8s.io/controller-runtime"
   packages = [
@@ -1119,6 +1180,9 @@
   analyzer-name = "dep"
   analyzer-version = 1
   input-imports = [
+    "github.com/cardil/operator-e2e-harness/pkg/catalogsource",
+    "github.com/cardil/operator-e2e-harness/pkg/config",
+    "github.com/cardil/operator-e2e-harness/pkg/test",
     "github.com/go-openapi/spec",
     "github.com/jcrossley3/manifestival",
     "github.com/knative/pkg/apis",
@@ -1129,6 +1193,7 @@
     "github.com/operator-framework/operator-sdk/pkg/predicate",
     "github.com/operator-framework/operator-sdk/pkg/restmapper",
     "github.com/operator-framework/operator-sdk/version",
+    "github.com/pkg/errors",
     "github.com/spf13/pflag",
     "k8s.io/api/apps/v1",
     "k8s.io/api/core/v1",
@@ -1137,6 +1202,7 @@
     "k8s.io/apimachinery/pkg/apis/meta/v1/unstructured",
     "k8s.io/apimachinery/pkg/runtime",
     "k8s.io/apimachinery/pkg/runtime/schema",
+    "k8s.io/apimachinery/pkg/util/wait",
     "k8s.io/client-go/plugin/pkg/client/auth",
     "k8s.io/code-generator/cmd/client-gen",
     "k8s.io/code-generator/cmd/conversion-gen",

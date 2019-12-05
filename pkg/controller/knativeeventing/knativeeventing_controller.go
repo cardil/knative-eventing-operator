@@ -24,7 +24,7 @@ import (
 )
 
 const (
-	operand = "knative-eventing"
+	Operand = "knative-eventing"
 )
 
 var (
@@ -277,14 +277,14 @@ func addSCCforSpecialClusterRoles(u *unstructured.Unstructured) error {
 // Because it's effectively cluster-scoped, we only care about a
 // single, named resource: knative-eventing/knative-eventing
 func isInteresting(request reconcile.Request) bool {
-	return request.Namespace == operand && request.Name == operand
+	return request.Namespace == Operand && request.Name == Operand
 }
 
 // Reflect our ignorance in the KnativeEventing status
 func (r *ReconcileKnativeEventing) ignore(instance *eventingv1alpha1.KnativeEventing) (err error) {
 	err = r.initStatus(instance)
 	if err == nil {
-		msg := fmt.Sprintf("The only KnativeEventing resource that matters is %s/%s", operand, operand)
+		msg := fmt.Sprintf("The only KnativeEventing resource that matters is %s/%s", Operand, Operand)
 		instance.Status.MarkIgnored(msg)
 		err = r.updateStatus(instance)
 	}
@@ -295,7 +295,7 @@ func (r *ReconcileKnativeEventing) ignore(instance *eventingv1alpha1.KnativeEven
 func (r *ReconcileKnativeEventing) ensureKnativeEventing() (err error) {
 	const path = "deploy/crds/eventing_v1alpha1_knativeeventing_cr.yaml"
 	instance := &eventingv1alpha1.KnativeEventing{}
-	key := client.ObjectKey{Namespace: operand, Name: operand}
+	key := client.ObjectKey{Namespace: Operand, Name: Operand}
 	if err = r.client.Get(context.TODO(), key, instance); err != nil {
 		var manifest mf.Manifest
 		manifest, err = mf.NewManifest(path, false, r.client)
@@ -304,7 +304,7 @@ func (r *ReconcileKnativeEventing) ensureKnativeEventing() (err error) {
 			err = manifest.Apply(&r.config.Resources[0])
 		}
 		if err == nil {
-			err = manifest.Transform(mf.InjectNamespace(operand))
+			err = manifest.Transform(mf.InjectNamespace(Operand))
 		}
 		if err == nil {
 			err = manifest.ApplyAll()
